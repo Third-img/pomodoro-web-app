@@ -84,7 +84,9 @@ const startTimer = () => {
       docTitle.textContent = `${countTimer.textContent} - Pomodoro`;
       if (timeAmount === 0) {
         clearInterval(interval);
-        alert("time's up bitch");
+        alert("time's up, rest up!");
+        shortBreakPage();
+        setTime(5 * 60);
       }
     }, 1000);
   }
@@ -132,17 +134,17 @@ settingsIcon.addEventListener("click", () => {
   modal.className = "modal-tab";
   modal.innerHTML = `
   <div class="">Set pomodoro minutes</div>
-  <input type="number" name="input-text" id="pom-time" min="5" max="60" value="5">
+  <input type="number" name="input-text" id="pom-time" min="5" max="240" value="5">
   <button class="all-buttons" id="setting-submit">set time</button>
   `;
   body.appendChild(modal);
 
   const changeSetTime = document.getElementById("pom-time");
   changeSetTime.addEventListener("change", () => {
-    if (changeSetTime.value > 60) {
-        changeSetTime.value = 60;
+    if (changeSetTime.value > 240) {
+      changeSetTime.value = 240;
     }
-  })
+  });
   const setTimeBtn = document.getElementById("setting-submit");
   setTimeBtn.addEventListener("click", () => {
     timeAmount = changeSetTime.value * 60;
